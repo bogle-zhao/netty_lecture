@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+</head>
+<body>
+
+<textarea id="messageShow" style="width: 400px;height: 500px;"></textarea><br/>
+<textarea id="sendText" style="width: 400px;height: 200px;"></textarea>
+<button id="send" onclick="send()">发送</button>
+<script>
+    var websock;
+
+    if ("WebSocket" in window) {
+        websock = new WebSocket("ws://localhost:8899/ws")
+    } else {
+        alert("不支持");
+    }
+
+
+
+    websock.onopen = function (event) {
+        websock.send("连接打开");
+    }
+
+    websock.onmessage = function (event) {
+        var data = event.data;
+        var messageShow = document.getElementById("messageShow");
+        var dataPre = messageShow.value;
+        messageShow.value = dataPre + "\n" + data;
+    }
+
+    function send() {
+        var txt = document.getElementById("sendText").value;
+        websock.send(txt);
+    }
+</script>
+</body>
+</html>
