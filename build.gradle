@@ -35,6 +35,7 @@ protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:3.6.1"
     }
+    generatedFilesBaseDir = 'src'   // 指定porto message消息的目录
     plugins {
         grpc {
             artifact = 'io.grpc:protoc-gen-grpc-java:1.19.0'
@@ -42,7 +43,9 @@ protobuf {
     }
     generateProtoTasks {
         all()*.plugins {
-            grpc {}
+            grpc {
+                setOutputSubDir 'java'  // 相对与generatedFilesBaseDir目录生成porto service文件目录
+            }
         }
     }
 }

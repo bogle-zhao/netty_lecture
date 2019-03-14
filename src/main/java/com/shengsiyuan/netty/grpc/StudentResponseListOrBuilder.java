@@ -10,12 +10,12 @@ public interface StudentResponseListOrBuilder extends
   /**
    * <code>repeated .com.shengsiyuan.netty.grpc.StudentResponse studentResponse = 1;</code>
    */
-  java.util.List<StudentResponse>
+  java.util.List<com.shengsiyuan.netty.grpc.StudentResponse> 
       getStudentResponseList();
   /**
    * <code>repeated .com.shengsiyuan.netty.grpc.StudentResponse studentResponse = 1;</code>
    */
-  StudentResponse getStudentResponse(int index);
+  com.shengsiyuan.netty.grpc.StudentResponse getStudentResponse(int index);
   /**
    * <code>repeated .com.shengsiyuan.netty.grpc.StudentResponse studentResponse = 1;</code>
    */
@@ -23,11 +23,11 @@ public interface StudentResponseListOrBuilder extends
   /**
    * <code>repeated .com.shengsiyuan.netty.grpc.StudentResponse studentResponse = 1;</code>
    */
-  java.util.List<? extends StudentResponseOrBuilder>
+  java.util.List<? extends com.shengsiyuan.netty.grpc.StudentResponseOrBuilder> 
       getStudentResponseOrBuilderList();
   /**
    * <code>repeated .com.shengsiyuan.netty.grpc.StudentResponse studentResponse = 1;</code>
    */
-  StudentResponseOrBuilder getStudentResponseOrBuilder(
+  com.shengsiyuan.netty.grpc.StudentResponseOrBuilder getStudentResponseOrBuilder(
       int index);
 }
