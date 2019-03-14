@@ -2,6 +2,8 @@ package com.shengsiyuan.netty.grpc;
 
 import io.grpc.stub.StreamObserver;
 
+import java.util.UUID;
+
 /**
  * @author bogle
  * @version 1.0 2019/3/14 下午2:12
@@ -92,6 +94,28 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
             }
 
 
+        };
+
+    }
+
+    @Override public StreamObserver<StreamRequest> biTalk(StreamObserver<StreamResponse> responseObserver) {
+        return new StreamObserver<StreamRequest>() {
+
+            @Override public void onNext(StreamRequest value) {
+                System.out.println("onNext:" + value.getRequestInfo());
+
+                responseObserver.onNext(StreamResponse.newBuilder()
+                                            .setResponseInfo(UUID.randomUUID().toString())
+                                            .build());
+            }
+
+            @Override public void onError(Throwable t) {
+                System.out.println(t.getMessage());
+            }
+
+            @Override public void onCompleted() {
+                responseObserver.onCompleted();
+            }
         };
 
     }

@@ -4,6 +4,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 
 /**
@@ -81,5 +82,30 @@ public class GrpcClient {
         studentRequestStreamObserver.onCompleted();
 
         Thread.sleep(5000);
+
+        System.out.println("-------------------------");
+
+
+        StreamObserver<StreamRequest> streamRequestStreamObserver = stub.biTalk(new StreamObserver<StreamResponse>() {
+            @Override public void onNext(StreamResponse value) {
+                System.out.println("client:" + value.getResponseInfo());
+            }
+
+            @Override public void onError(Throwable t) {
+                System.out.println(t.getMessage());
+            }
+
+            @Override public void onCompleted() {
+                System.out.println("client onCompleted!");
+            }
+        });
+
+        for (int i = 0; i < 10; i++) {
+            streamRequestStreamObserver.onNext(StreamRequest.newBuilder()
+                                                   .setRequestInfo(LocalDateTime.now().toString())
+                                                   .build());
+            Thread.sleep(1000);
+        }
+
     }
 }
