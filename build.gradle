@@ -1,9 +1,9 @@
-plugins {
-    id 'java'
-}
-
 group 'com.shengsiyuan'
 version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -17,4 +17,41 @@ dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.6.1'
     compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: '3.6.1'
     compile group: 'org.apache.thrift', name: 'libthrift', version: '0.11.0'
+    compile 'io.grpc:grpc-netty-shaded:1.19.0'
+    compile 'io.grpc:grpc-protobuf:1.19.0'
+    compile 'io.grpc:grpc-stub:1.19.0'
 }
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.5'
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.6.1"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.19.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
+
+//sourceSets {   //知道proto文件的目录
+//    main {
+//        proto {
+//            srcDir 'src/main/proto';
+//            srcDir 'src/main '
+//        }
+//    }
+//}
