@@ -9,6 +9,8 @@ import java.util.Arrays;
 
 /**
  * 关于Buffer的Scattering与Gathering
+ * Scattering: 分散，放开，在读的时候，我们可以传一个buffer的数组，让每一个buffer中读入数据，一个buffer读满了之后，接着读入到先一个buffer中，简单理解就是将来自于channel中的数据顺序的多到多个buffer中，
+ * Gathering: 收集，合并到一起，和Scattering相反，我们可以将一个buffer数组的每个buffer数据写入到channel中，第一个buffer写完了之后，接着写第二个buffer中的数据，依次执行
  *
  * @author bogle
  * @version 1.0 2019/3/18 下午10:05
