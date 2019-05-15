@@ -51,7 +51,19 @@ public class NioClient {
                             }
                         });
                     }
+
+                    client.register(selector,SelectionKey.OP_READ);
+                } else if(selectionKey.isReadable()) {
+                    SocketChannel client = (SocketChannel)selectionKey.channel();
+                    ByteBuffer readByffer = ByteBuffer.allocate(1024);
+                    int count = client.read(readByffer);
+                    if (count > 0) {
+                        String receivedMsg = new String(readByffer.array(),0,count);
+                        System.out.println(receivedMsg);
+                    }
                 }
+
+                iter.remove();
             }
         }
     }
