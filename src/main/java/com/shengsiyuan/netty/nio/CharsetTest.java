@@ -43,7 +43,10 @@ public class CharsetTest {
         inputRandomAccessFile.close();
         outputRandomAccessFile.close();
 
-
+        System.out.println("===================================");
+        Charset.availableCharsets().forEach((k, v) -> {
+            System.out.println(k + " , " + v);
+        });
 
     }
 }
