@@ -39,7 +39,7 @@ import java.nio.charset.CharsetEncoder;
  * zero width no-break space:零宽度，不换行的字符，如果在文件的开头出现0xFEFF(BE),0xFFFE(LE)
  *
  * utf-8，使用变长字节表示形式，根据不同的字符，采用的存储字节不一样
- *
+ * 一般来说，utf-8会通过3个字节来表示一个中文
  *
  *
  *
