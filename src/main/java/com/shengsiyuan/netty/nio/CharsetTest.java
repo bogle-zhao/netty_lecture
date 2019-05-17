@@ -41,6 +41,8 @@ import java.nio.charset.CharsetEncoder;
  * utf-8，使用变长字节表示形式，根据不同的字符，采用的存储字节不一样
  * 一般来说，utf-8会通过3个字节来表示一个中文
  *
+ * BOM（Byte Order Mark）：就是开头的一个不可见的字符
+ *
  *
  *
  */
