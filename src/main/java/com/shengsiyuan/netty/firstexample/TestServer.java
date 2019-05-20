@@ -9,10 +9,13 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 public class TestServer {
 
     public static void main(String[] args) throws Exception {
+        //bossGroup:只做接受连接，将工作交给workerGroup
         EventLoopGroup bossGroup = new NioEventLoopGroup();
+        //处理连接
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
         try {
+            //可以认为是一个辅助类，简化服务器创建工作
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
                     .childHandler(new TestServerInitializer());
